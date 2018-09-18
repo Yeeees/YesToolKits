@@ -18,6 +18,8 @@ export default StyleSheet.create({
         backgroundColor: '#FFB74D'
     },
     drawerImage: {
+        //padding: 15,
+        marginTop: 25,
         height: 150,
         width: 150,
         borderRadius: 75
