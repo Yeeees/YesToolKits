@@ -8,15 +8,17 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {DrawerNavigator} from 'react-navigation';
+import {createDrawerNavigator, DrawerNavigator} from 'react-navigation';
+import Home from './app/components/Home';
+import ParkingSpot from './app/components/ParkingSpot'
  
 class App extends Component {
     render() {
         return (
-        <View>
+        
             <AppStack />
-        </View>
-        )
+        
+        );
     }
 }
 
@@ -25,5 +27,4 @@ const AppStack = DrawerNavigator({
   parkingspot: {screen: ParkingSpot}
 })
 export default App
-
 
