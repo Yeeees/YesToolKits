@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import {createDrawerNavigator, DrawerNavigator} from 'react-navigation';
 import Home from './app/components/Home';
 import ParkingSpot from './app/components/ParkingSpot'
+import Sidebar from './app/components/Sidebar'
  
 class App extends Component {
     render() {
@@ -25,6 +26,12 @@ class App extends Component {
 const AppStack = DrawerNavigator({
   home: {screen: Home},
   parkingspot: {screen: ParkingSpot}
+},{
+  initialRouteName: 'home',
+  drawerOpenRoute: 'DrawerOpen',
+  drawerCloseRoute: 'DrawerClose',
+  drawerToggleRoute: 'DrawerToggle',
+  contentComponent: Sidebar
 })
 export default App
 
