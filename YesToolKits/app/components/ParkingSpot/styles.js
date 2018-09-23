@@ -9,5 +9,14 @@ export default StyleSheet.create({
     text1: {
         justifyContent: 'center'
 
+    },
+    map: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        justifyContent: 'flex-end',
+        alignItems: 'center'
     }
 })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View,Text,Dimensions } from 'react-native'
 import styles from './styles'
 import {Header,Left,Icon,Container,Content, Body, Right} from 'native-base'
+import MapView from 'react-native-maps'
 
 const {width,height} = Dimensions.get('window')
 const SCREEN_HEIGHT = height
@@ -28,7 +29,7 @@ class ParkingSpot extends Component {
             // }
         }
     }
-    watchID: ?number=null
+    //watchID: ?number=null
     componentDidMount() {
         navigator.geolocation.getCurrentPosition((position)=>{
             var lat = parseFloat(position.coords.latitude)
@@ -61,6 +62,15 @@ class ParkingSpot extends Component {
                 </Left>
                 <Body>
                     <Text>Parking Spot</Text>
+                    <MapView 
+                        style={styles.map}
+                        region={{
+                            latitude: -37.878236, 
+                            longitude: 145.044651,
+                            latitudeDelta: 0.1,
+                            longtitudeDelta: 0.1
+                        }}
+                    />
                 </Body>
                 <Right transparent>
 
@@ -69,14 +79,7 @@ class ParkingSpot extends Component {
             </Header>
             <Content contentContainerStyle={view1}>
                 <Text>{this.state.latitude1 + " " + this.state.longitude1}</Text>
-                    <Map
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg"
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `400px` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-            lat={this.state.latitude1}
-            lon={this.state.longtitude1}
-      />
+                    
             </Content>
         </Container>
         )
