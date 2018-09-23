@@ -9,5 +9,9 @@ export default StyleSheet.create({
     text1: {
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    weather_icon: {
+        height: 100,
+        width: 100
     }
 })
