@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import { View,Text,Dimensions } from 'react-native'
 import styles from './styles'
 import {Header,Left,Icon,Container,Content, Body, Right} from 'native-base'
-import MapView from 'react-native-maps'
 
 const {width,height} = Dimensions.get('window')
 const SCREEN_HEIGHT = height
 const SCREEN_WIDTH = width
 const ASPECT_RATIO = width / height
-const LATITUDE_DELTA = 0.0922
+const LATITUDE_DELTA = 0.01
 const LONGTITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 class ParkingSpot extends Component {
@@ -62,15 +61,6 @@ class ParkingSpot extends Component {
                 </Left>
                 <Body>
                     <Text>Parking Spot</Text>
-                    <MapView 
-                        style={styles.map}
-                        region={{
-                            latitude: -37.878236, 
-                            longitude: 145.044651,
-                            latitudeDelta: 0.1,
-                            longtitudeDelta: 0.1
-                        }}
-                    />
                 </Body>
                 <Right transparent>
 
