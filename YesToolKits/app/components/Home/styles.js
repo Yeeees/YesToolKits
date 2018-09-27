@@ -16,6 +16,14 @@ export default StyleSheet.create({
     },
     weather_view: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        //height: 20
+    },
+    weather_each: {
+        marginLeft: 10,
+        borderWidth: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 180
     }
 })

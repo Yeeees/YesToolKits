@@ -77,7 +77,7 @@ class Home extends Component {
                 })
                 console.log('forecast')
                 console.log(forecast)
-                this.setState({hours: forecast})
+                this.setState({hours: forecast.slice(0,9)})
                 
             }else {
                 console.log("failed to request")
@@ -87,8 +87,7 @@ class Home extends Component {
         }).catch( (error) => {
             console.log(error)
         }); 
-        console.log('forecast')
-        console.log(forecast)
+        
         
     }
 
@@ -96,7 +95,7 @@ class Home extends Component {
         if (this.state.refreshFlag) {
             this.getForcast(this.state.city)
         }
-        const {text1,view1,weather_icon,weather_view} = styles
+        const {text1,view1,weather_icon,weather_view,weather_each} = styles
         console.log('render refresh')
         return (
         <Container>
@@ -117,7 +116,7 @@ class Home extends Component {
                     {
                         this.state.hours.map((element,index)=> {
                             return (
-                                <View key={index}>
+                                <View key={index} style={weather_each}>
                                     <Image style={weather_icon} source={{uri: "http://openweathermap.org/img/w/" + element.weatherIcon + ".png"}} />
                                     <Text>{index*3} hours</Text>
                                     <Text>Temp: {element.temp}</Text>
