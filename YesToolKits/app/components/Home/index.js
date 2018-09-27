@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Text,Image } from 'react-native'
+import { View,Text,Image,ScrollView } from 'react-native'
 import styles from './styles'
 import {Header,Left,Icon,Container,Content,Body,Right} from 'native-base'
 import axios from 'axios'
@@ -13,6 +13,7 @@ class Home extends Component {
         this.state = {
             city: DEFAULT_CITY,
             refreshFlag: true,
+            hours: [],
             max_temp: "",
             min_temp: "",
             current_temp: "",
@@ -23,7 +24,10 @@ class Home extends Component {
     }
 
     getForcast(city) {
+        var forecast = []
+
         const request_url = "http://api.openweathermap.org/data/2.5/weather?q="+DEFAULT_CITY+"&APPID="+KEY+"&units=metric"
+        
         axios.get(request_url).then ( (response)=> {
             if(response.status == 200) {
                 this.setState({refreshFlag: false})
@@ -31,28 +35,68 @@ class Home extends Component {
                 console.log(response)
                 console.log(weather[0].main)
                 console.log(response.data.main.temp_max)
-                this.setState({max_temp: response.data.main.temp_max})
-                this.setState({min_temp: response.data.main.temp_min})
-                this.setState({current_temp: response.data.main.temp})
-                this.setState({weather_desc: weather[0].description})
-                this.setState({weatherIcon: weather[0].icon})
-                this.setState({wind: response.data.wind.speed})
-                
+                forecast = forecast.concat([
+                    {
+                        
+                        temp: response.data.main.temp,
+                        weatherDesc: weather[0].description,
+                        wind: response.data.wind.speed,
+                        weatherIcon: weather[0].icon
+                    }
+                ])
                 
             }else {
                 console.log("failed to request")
             }
             
+            
         }).catch( (error) => {
             console.log(error)
         });
+        const request_url2 = "http://api.openweathermap.org/data/2.5/forecast?q="+DEFAULT_CITY+"&APPID="+KEY+"&units=metric"
+        axios.get(request_url2).then ( (response)=> {
+            if(response.status == 200) {
+                this.setState({refreshFlag: false})
+                var hourList = response.data.list
+                console.log(response)
+                console.log(hourList[0].main.temp)
+                
+
+                hourList.forEach( (element,index) => {
+                    weatherList = element.weather
+                    forecast = forecast.concat([
+                        {
+                            
+                            temp: element.main.temp,
+                            
+                            weatherDesc: weatherList[0].description,
+                            wind: element.wind.speed,
+                            weatherIcon: weatherList[0].icon
+                        }
+                    ])
+                })
+                console.log('forecast')
+                console.log(forecast)
+                this.setState({hours: forecast})
+                
+            }else {
+                console.log("failed to request")
+            }
+            
+            
+        }).catch( (error) => {
+            console.log(error)
+        }); 
+        console.log('forecast')
+        console.log(forecast)
+        
     }
 
     render() {
         if (this.state.refreshFlag) {
             this.getForcast(this.state.city)
         }
-        const {text1,view1,weather_icon} = styles
+        const {text1,view1,weather_icon,weather_view} = styles
         console.log('render refresh')
         return (
         <Container>
@@ -69,10 +113,24 @@ class Home extends Component {
                 
             </Header>
             <Content contentContainerStyle={view1}>
-                <Image style={weather_icon} source={{uri: "http://openweathermap.org/img/w/" + this.state.weatherIcon + ".png"}} />
-                <Text>Max: {this.state.max_temp} | Min: {this.state.min_temp} | Current: {this.state.current_temp}</Text>
-                <Text>Weather: {this.state.weather_desc}</Text>
-                <Text>Wind: {this.state.wind}</Text>
+                <ScrollView style={weather_view} horizontal={true}>
+                    {
+                        this.state.hours.map((element,index)=> {
+                            return (
+                                <View key={index}>
+                                    <Image style={weather_icon} source={{uri: "http://openweathermap.org/img/w/" + element.weatherIcon + ".png"}} />
+                                    <Text>{index*3} hours</Text>
+                                    <Text>Temp: {element.temp}</Text>
+                                    <Text>{element.weatherDesc}</Text>
+                                    <Text>Wind: {element.wind}</Text>
+                                </View>
+                            )
+                        })
+                    }
+                    
+                    
+                </ScrollView>
+                
 
             </Content>
         </Container>
