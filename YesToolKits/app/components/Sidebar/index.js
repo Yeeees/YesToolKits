@@ -11,7 +11,8 @@ class Sidebar extends Component {
     render() {
         const routes = [
             {title:"  Home",route:"home",icon:"home"},
-            {title:"  ParkingSpotss",route:"parkingspot",icon:"navigate"}
+            {title:"  InstaDiary",route:"instadiary",icon:"camera"},
+            {title:"  ParkingSpot",route:"parkingspot",icon:"navigate"},
         ]
         return (
         <Container>
