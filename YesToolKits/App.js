@@ -13,7 +13,7 @@ import Home from './app/components/Home';
 import ParkingSpot from './app/components/ParkingSpot'
 import InstaDiary from './app/components/InstaDiary'
 import Sidebar from './app/components/Sidebar'
-
+    
  
 class App extends Component {
     render() {
