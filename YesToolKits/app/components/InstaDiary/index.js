@@ -15,7 +15,7 @@ export default createBottomTabNavigator(
             navigationOptions: {
                 tabBarLabel: 'List',
                 tabBarIcon: ({ tintColor }) => (
-                    <Icon name = "ios-home" size={24} color={tintColor} />
+                    <Icon name = "ios-albums" size={24} color={tintColor} />
                 )
             }
         },
@@ -24,7 +24,7 @@ export default createBottomTabNavigator(
             navigationOptions: {
                 tabBarLabel: 'Upload',
                 tabBarIcon: ({ tintColor }) => (
-                    <Icon name = "ios-settings" size={24} color={tintColor} />
+                    <Icon name = "ios-add-circle-outline" size={24} color={tintColor} />
                 )
             }
         }
