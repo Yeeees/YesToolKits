@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Text,ScrollView, Button, Image, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { View,Text,ScrollView, Button, Image, ActivityIndicator, TouchableOpacity,Dimensions,TextInput } from 'react-native'
 import styles from './styles'
 import {Header,Left,Icon,Container,Content,Body,Right} from 'native-base'
 import RNFetchBlob from 'react-native-fetch-blob'
@@ -19,12 +19,39 @@ class UploadTab extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            //Activity indicator
             loading: false,
-            dp: null
+            //Local Path of the image,
+            imagePath: null,
+            //URL of the image
+            dp: null,
+            //Image Desc
+            imageDesc: null,
         }
+        this.uploadImage = this.uploadImage.bind(this)
     }
 
-    openPicker(){
+    chooseImage() {
+      this.setState({ loading: true })
+      ImagePicker.openPicker({
+        width: 300,
+        height: 300,
+        cropping: true,
+        mediaType: 'photo'
+      }).then(image => {
+  
+        this.setState({imagePath: image.path})
+        console.log("imagePath: "+this.state.imagePath)
+        
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+      this.setState({ loading: false })
+    }
+
+    uploadImage(){
+      if(this.state.imagePath != null) {
         this.setState({ loading: true })
         const Blob = RNFetchBlob.polyfill.Blob
         const fs = RNFetchBlob.fs
@@ -33,14 +60,7 @@ class UploadTab extends Component {
         //const { uid } = this.state.user
         const uid = "Images"
         //const uid = new Date().toLocaleString()
-        ImagePicker.openPicker({
-          width: 300,
-          height: 300,
-          cropping: true,
-          mediaType: 'photo'
-        }).then(image => {
-    
-          const imagePath = image.path
+        const imagePath = this.state.imagePath
     
           let uploadBlob = null
           const imageName = new Date().toISOString() + ".jpg"
@@ -75,15 +95,17 @@ class UploadTab extends Component {
             .catch((error) => {
               console.log(error)
             })
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      }
+      else {
+        alert("Pick Image First Please")
+      }
+        
+        
       }
 
 
     render() {
-        const {text1,view1,weather_icon,weather_view,weather_each} = styles
+        const {text1,view1,imageShow,uploadBtn} = styles
         const dpr = this.state.dp ? (<TouchableOpacity onPress={ () => this.openPicker() }><Image
          style={{width: 100, height: 100, margin: 5}}
          source={{uri: this.state.dp}}
@@ -92,11 +114,33 @@ class UploadTab extends Component {
       title={ "Change Picture" }
     />)
 
-    const dps = this.state.loading ? <ActivityIndicator animating={this.state.loading} /> : (<View style={styles.container}>
+    const dps = this.state.loading ? <ActivityIndicator animating={this.state.loading} /> : 
+    (<View style={styles.container}>
       <View style={{flexDirection: "row"}}>
         { dpr }
       </View>
     </View>)
+
+    const picker = this.state.imagePath ? (<TouchableOpacity onPress={ () => this.chooseImage() }><Image
+    style={{width: Dimensions.get("window").width , height: 450, margin: 5}}
+    source={{uri: this.state.imagePath}}
+    /></TouchableOpacity>) : (<Button
+    onPress={ () => this.chooseImage() }
+    title={ "Change Picture" }
+    />)
+
+    
+
+    const selectImage =  this.state.loading ? <ActivityIndicator animating={this.state.loading} /> :
+    (
+      <View style={imageShow}>
+        {/* <View style={{flexDirection: "row"}}>
+          { picker }
+        </View> */}
+        { picker }
+        
+      </View>
+    )
         return (
             <Container>
                 <Header transparent>
@@ -112,9 +156,15 @@ class UploadTab extends Component {
                     
                 </Header>
                 <Content contentContainerStyle={view1}>
-                { dps }
+                {/* { dps } */}
                     
-
+                {selectImage}
+                <TextInput 
+                  onChangeText={text => this.setState({imageDesc : text})}
+                  placeholder={"Image Description"}
+                  multiline = {true}
+                />
+                <Button title={"Upload"} style={uploadBtn} onPress={this.uploadImage}/>
                 </Content>
             </Container>
         )

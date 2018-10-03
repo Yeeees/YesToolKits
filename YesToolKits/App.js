@@ -13,7 +13,7 @@ import Home from './app/components/Home';
 import ParkingSpot from './app/components/ParkingSpot'
 import InstaDiary from './app/components/InstaDiary'
 import Sidebar from './app/components/Sidebar'
-    
+
  
 class App extends Component {
     render() {
@@ -30,7 +30,7 @@ const AppStack = DrawerNavigator({
   parkingspot: {screen: ParkingSpot},
   instadiary: {screen: InstaDiary}
 },{
-  initialRouteName: 'home',
+  initialRouteName: 'instadiary',
   drawerOpenRoute: 'DrawerOpen',
   drawerCloseRoute: 'DrawerClose',
   drawerToggleRoute: 'DrawerToggle',

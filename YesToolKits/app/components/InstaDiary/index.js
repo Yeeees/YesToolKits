@@ -29,7 +29,7 @@ export default createBottomTabNavigator(
             }
         }
     },{
-        intitalRouteName: 'ListTab',
+        intitalRouteName: 'UploadTab',
         navigationOptions: {
             tabBarVisible: true
         },

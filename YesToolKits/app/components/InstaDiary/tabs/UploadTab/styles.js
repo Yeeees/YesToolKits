@@ -10,4 +10,10 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    imageShow: {
+        flex: 7
+    },
+    uploadBtn: {
+        flex: 1
+    },
 })
