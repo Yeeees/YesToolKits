@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Text,ScrollView, Button, Image, ActivityIndicator, TouchableOpacity,Dimensions,TextInput } from 'react-native'
+import { View,Text,ScrollView, Button, Image, ActivityIndicator, TouchableOpacity,Dimensions,TextInput,ListView } from 'react-native'
 import styles from './styles'
 import {Header,Left,Icon,Container,Content,Body,Right} from 'native-base'
 import * as firebase from 'firebase'
@@ -30,48 +30,42 @@ class ListTab extends Component {
         this.state = {
             imageList: [],
             loading: false,
+            dataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+              })
         }
         this.downloadImages = this.downloadImages.bind(this)
 
     }
-
+    componentDidMount() {
+        this.downloadImages()
+    }
     downloadImages() {
-        if(this.state.imageList.length == 0) {
-            this.setState({ loading: true })
-            const Blob = RNFetchBlob.polyfill.Blob
-            const fs = RNFetchBlob.fs
-            window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
-            window.Blob = Blob
-            //const { uid } = this.state.user
-            const uid = "Images"
-            const imageRef = firebase.storage().ref(uid)
-            var bucket = imageRef.bucket
-            var firebaseUrl = "https://firebasestorage.googleapis.com/v0/b/" + bucket + "/o/";
-            console.log("Ref: "+imageRef.toString())
-            console.log("getURL: "+imageRef.getDownloadURL)
-            console.log("getMETA: "+imageRef.getMetadata)
-            var gsReference = firebase.storage().refFromURL(imageRef.toString())
-            console.log("gs: "+gsReference) 
-            console.log("Firebase URL " + firebaseUrl)
+       
 
-            var bucket = firebase.storage().ref().bucket;
-            var firebaseUrl = "https://firebasestorage.googleapis.com/v0/b/" + bucket + "/o/";
-            var finalUrl = firebaseUrl + 'path%2Fto%2Fresource';
-            firebase.auth().signInAnonymously()
-            firebase.auth().currentUser.getToken()
-            .then((token) => {
-            fetch(finalUrl, {headers: {'Authorization' : 'Firebase ' + token}})
-            .then((response) => response.json())
-            .then((responseJson) => {
-                var downloadURL = finalUrl + "?alt=media&token=" + responseJson.downloadTokens})
-                console.log("downloadURL " + downloadURL)
-            })
+        firebase.database().ref('instadiary/').on('value', (snap) => {
 
-        }
+            // get children as an array
+            var items = [];
+            snap.forEach((child) => {
+              items.push({
+                caption: child.val().caption,
+                imageURL: child.val().imageURL,
+                _key: child.key
+              });
+            });
+      
+            this.setState({
+              dataSource: this.state.dataSource.cloneWithRows(items.reverse())
+            });
+      
+          });
+
+        
     }
 
     render() {
-        const {text1,view1} = styles
+        const {text1,view1,listview} = styles
 
         return (
             
@@ -89,8 +83,17 @@ class ListTab extends Component {
                 
             </Header>
             <Content contentContainerStyle={view1}>
-                <Button title={"get"} onPress={this.downloadImages}/>
-                
+                {/* <Button title={"get"} onPress={this.downloadImages}/> */}
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={(rowData) => 
+                        <View style = {{justifyContent: "center", alignContent: "center"}}>
+                            <Image source={{uri: rowData.imageURL}} style = {{width: Dimensions.get("window").width-10 , height: 450, margin: 5}} />
+                            <Text>{rowData.caption}</Text>
+                        </View>
+                    }
+                    enableEmptySections={true}
+                    style={listview}/>
                 
 
             </Content>
