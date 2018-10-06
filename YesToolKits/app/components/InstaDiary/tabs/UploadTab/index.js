@@ -5,15 +5,7 @@ import {Header,Left,Icon,Container,Content,Body,Right} from 'native-base'
 import RNFetchBlob from 'react-native-fetch-blob'
 import ImagePicker from 'react-native-image-crop-picker'
 import * as firebase from 'firebase'
-const config = {
-    apiKey: "AIzaSyBtHCE5y0HZ-eB7uLleX-cgS8-oS_sjUF4",
-    authDomain: "yestoolkits.firebaseapp.com",
-    databaseURL: "https://yestoolkits.firebaseio.com",
-    projectId: "yestoolkits",
-    storageBucket: "yestoolkits.appspot.com",
-    messagingSenderId: "304847695731"
-  };
-  firebase.initializeApp(config);
+
 class UploadTab extends Component {
 
     constructor(props) {
@@ -90,6 +82,10 @@ class UploadTab extends Component {
               obj["loading"] = false
               obj["dp"] = url
               this.setState(obj)
+              firebase.database().ref('instadiary/').push({
+                  imageURL: url,
+                  caption: this.state.imageDesc
+              })
     
             })
             .catch((error) => {
