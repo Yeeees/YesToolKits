@@ -130,9 +130,7 @@ class UploadTab extends Component {
     const selectImage =  this.state.loading ? <ActivityIndicator animating={this.state.loading} /> :
     (
       <View style={imageShow}>
-        {/* <View style={{flexDirection: "row"}}>
-          { picker }
-        </View> */}
+
         { picker }
         
       </View>
