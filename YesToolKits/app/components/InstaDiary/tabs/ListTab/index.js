@@ -55,7 +55,7 @@ class ListTab extends Component {
     }
 
     render() {
-        const {text1,view1,listview} = styles
+        const {text1,view1,listview,container,image} = styles
 
         return (
             
@@ -74,7 +74,8 @@ class ListTab extends Component {
             </Header>
             <Content contentContainerStyle={view1}>
                 {/* <Button title={"get"} onPress={this.downloadImages}/> */}
-                <ListView
+                <View style = {container}>
+                    <ListView
                     dataSource={this.state.dataSource}
                     renderRow={(rowData) => 
                         <View style = {{justifyContent: "center", alignContent: "center"}}>
@@ -84,6 +85,8 @@ class ListTab extends Component {
                     }
                     enableEmptySections={true}
                     style={listview}/>
+                </View>
+                
                 
 
             </Content>

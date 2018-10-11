@@ -30,7 +30,7 @@ const AppStack = DrawerNavigator({
   parkingspot: {screen: ParkingSpot},
   instadiary: {screen: InstaDiary}
 },{
-  initialRouteName: 'instadiary',
+  initialRouteName: 'home',
   drawerOpenRoute: 'DrawerOpen',
   drawerCloseRoute: 'DrawerClose',
   drawerToggleRoute: 'DrawerToggle',
