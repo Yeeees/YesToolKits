@@ -107,7 +107,7 @@ class UploadTab extends Component {
          source={{uri: this.state.dp}}
        /></TouchableOpacity>) : (<Button
       onPress={ () => this.openPicker() }
-      title={ "Change Picture" }
+      title={ "Pick Picture" }
     />)
 
     const dps = this.state.loading ? <ActivityIndicator animating={this.state.loading} /> : 
@@ -122,7 +122,7 @@ class UploadTab extends Component {
     source={{uri: this.state.imagePath}}
     /></TouchableOpacity>) : (<Button
     onPress={ () => this.chooseImage() }
-    title={ "Change Picture" }
+    title={ "Pick Picture" }
     />)
 
     

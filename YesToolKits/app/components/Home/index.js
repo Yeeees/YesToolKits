@@ -133,7 +133,7 @@ class Home extends Component {
         if (this.state.refreshFlag) {
             this.getForcast(this.state.city)
         }
-        const {text1,view1,weather_icon,weather_view,weather_each,listcontainer,listview,actionText,li,liText} = styles
+        const {text1,view1,weather_icon,weather_view,weather_each,listcontainer,listview,actionText,listTitle} = styles
         console.log('render refresh')
         return (
         <Container>
@@ -150,8 +150,8 @@ class Home extends Component {
                 
             </Header>
             <Content contentContainerStyle={view1}>
-                <View>
-                    <ScrollView style={weather_view} horizontal={true}>
+                <View style={weather_view}>
+                    <ScrollView  horizontal={true}>
                         {
                             this.state.hours.map((element,index)=> {
                                 return (
@@ -172,6 +172,7 @@ class Home extends Component {
                 
 
                 <View style={listcontainer}>
+                    <Text style={listTitle}>{"To-do List"}</Text>
                     <ListView
                         dataSource={this.state.dataSource}
                         renderRow={this._renderItem.bind(this)}

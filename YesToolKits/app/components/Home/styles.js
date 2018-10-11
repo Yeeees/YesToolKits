@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet,Dimensions} from 'react-native'
 
 export default StyleSheet.create({
     view1: {
@@ -29,9 +29,15 @@ export default StyleSheet.create({
     listcontainer: {
         backgroundColor: '#f2f2f2',
         flex: 1,
+
+    },
+    listTitle: {
+        fontSize: 25,
+        marginTop: 5
     },
     listview: {
         flex: 1,
+        backgroundColor: '#ea2c2c'
     },
     li: {
         backgroundColor: '#fff',
@@ -41,9 +47,11 @@ export default StyleSheet.create({
         paddingLeft: 16,
         paddingTop: 14,
         paddingBottom: 16,
+        width: Dimensions.get('window').width,
+
     },
     liContainer: {
-        flex: 2,
+        flex: 1,
     },
     liText: {
         color: '#333',
@@ -72,8 +80,8 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
     actionText: {
-        color: '#fff',
-        fontSize: 16,
+        backgroundColor: '#2ceae0',//'#fff',
+        fontSize: 25,
         textAlign: 'center',
     },
     action: {
