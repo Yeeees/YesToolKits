@@ -193,7 +193,7 @@ class Home extends Component {
     }
 
     _addItem() {
-        AlertIOS.prompt(
+        Alert.prompt(
           'Add New Item',
           null,
           [
@@ -212,11 +212,11 @@ class Home extends Component {
     _renderItem(item) {
         const {li,liText} = styles
         const onPress = () => {
-          AlertIOS.alert(
-            'Complete',
+          Alert.alert(
+            'Complete?',
             null,
             [
-              {text: 'Complete', onPress: (text) => this.itemsRef.child(item._key).remove()},
+              {text: 'Yes', onPress: (text) => this.itemsRef.child(item._key).remove()},
               {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
             ]
           );
