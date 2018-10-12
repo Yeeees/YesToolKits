@@ -4,6 +4,8 @@ import styles from './styles'
 import {Header,Left,Icon,Container,Content,Body,Right} from 'native-base'
 import axios from 'axios'
 import * as firebase from 'firebase'
+import prompt from 'react-native-prompt-android';
+
 //const styles = require('./styles')
 
 
@@ -193,7 +195,7 @@ class Home extends Component {
     }
 
     _addItem() {
-        Alert.prompt(
+        prompt(
           'Add New Item',
           null,
           [
