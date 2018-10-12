@@ -13,6 +13,7 @@ import Home from './app/components/Home';
 import ParkingSpot from './app/components/ParkingSpot'
 import InstaDiary from './app/components/InstaDiary'
 import Sidebar from './app/components/Sidebar'
+import CloudChat from './app/components/CloudChat'
 
  
 class App extends Component {
@@ -28,7 +29,9 @@ class App extends Component {
 const AppStack = DrawerNavigator({
   home: {screen: Home},
   parkingspot: {screen: ParkingSpot},
-  instadiary: {screen: InstaDiary}
+  instadiary: {screen: InstaDiary},
+  cloudchat: {screen: CloudChat},
+
 },{
   initialRouteName: 'home',
   drawerOpenRoute: 'DrawerOpen',

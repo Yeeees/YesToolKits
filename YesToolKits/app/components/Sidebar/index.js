@@ -12,6 +12,7 @@ class Sidebar extends Component {
         const routes = [
             {title:"  Home",route:"home",icon:"home"},
             {title:"  InstaDiary",route:"instadiary",icon:"camera"},
+            {title:"  CloudChat",route:"cloudchat",icon:"chatbubbles"},
             {title:"  ParkingSpot",route:"parkingspot",icon:"navigate"},
         ]
         return (
