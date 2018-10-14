@@ -101,29 +101,15 @@ class UploadTab extends Component {
 
 
     render() {
-        const {text1,view1,imageShow,uploadBtn} = styles
-        const dpr = this.state.dp ? (<TouchableOpacity onPress={ () => this.openPicker() }><Image
-         style={{width: 100, height: 100, margin: 5}}
-         source={{uri: this.state.dp}}
-       /></TouchableOpacity>) : (<Button
-      onPress={ () => this.openPicker() }
+      const {text1,view1,imageShow,uploadBtn} = styles
+
+      const picker = this.state.imagePath ? (<TouchableOpacity onPress={ () => this.chooseImage() }><Image
+      style={{width: Dimensions.get("window").width , height: 450, margin: 5}}
+      source={{uri: this.state.imagePath}}
+      /></TouchableOpacity>) : (<Button
+      onPress={ () => this.chooseImage() }
       title={ "Pick Picture" }
-    />)
-
-    const dps = this.state.loading ? <ActivityIndicator animating={this.state.loading} /> : 
-    (<View style={styles.container}>
-      <View style={{flexDirection: "row"}}>
-        { dpr }
-      </View>
-    </View>)
-
-    const picker = this.state.imagePath ? (<TouchableOpacity onPress={ () => this.chooseImage() }><Image
-    style={{width: Dimensions.get("window").width , height: 450, margin: 5}}
-    source={{uri: this.state.imagePath}}
-    /></TouchableOpacity>) : (<Button
-    onPress={ () => this.chooseImage() }
-    title={ "Pick Picture" }
-    />)
+      />)
 
     
 
@@ -149,10 +135,8 @@ class UploadTab extends Component {
                     </Right>
                     
                 </Header>
-                <Content contentContainerStyle={view1}>
-                {/* { dps } */}
-                    
-                {selectImage}
+                <Content contentContainerStyle={view1}>                    
+                    {selectImage}
                 <TextInput 
                   onChangeText={text => this.setState({imageDesc : text})}
                   placeholder={"Image Description"}

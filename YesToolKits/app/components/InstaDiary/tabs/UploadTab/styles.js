@@ -11,7 +11,7 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     imageShow: {
-        flex: 7
+        flex: 1
     },
     uploadBtn: {
         flex: 1
