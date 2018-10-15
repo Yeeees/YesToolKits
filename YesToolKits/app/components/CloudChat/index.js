@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Text } from 'react-native'
+import { View,Text,TextInput } from 'react-native'
 import styles from './styles'
 import {Header,Left,Icon,Container,Content, Body, Right} from 'native-base'
 
@@ -21,7 +21,8 @@ class CloudChat extends Component {
                 
             </Header>
             <Content contentContainerStyle={view1}>
-                    
+                <TextInput placeholder={'Email Address'}> </TextInput>
+                <TextInput placeholder={'Password'}></TextInput>
             </Content>
         </Container>
         )
