@@ -4,9 +4,15 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import Backend from '../../../Backend';
 
 export default class Chat extends React.Component {
+//   constructor(prpos) {
+//     super(props)
+    
+//   }
   state = {
     messages: [],
+    // name: this.props.name
   };
+  
   componentWillMount() {
 
   }

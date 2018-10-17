@@ -33,7 +33,7 @@ const AppStack = DrawerNavigator({
   cloudchat: {screen: CloudChat},
 
 },{
-  initialRouteName: 'home',
+  initialRouteName: 'cloudchat',
   drawerOpenRoute: 'DrawerOpen',
   drawerCloseRoute: 'DrawerClose',
   drawerToggleRoute: 'DrawerToggle',

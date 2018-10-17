@@ -4,7 +4,6 @@ import Login from './Login';
 import {
     Platform,
   } from 'react-native';
-import { Router, Scene } from 'react-native-router-flux';
 import {createStackNavigator} from 'react-navigation'
 
 
@@ -33,5 +32,10 @@ export default createStackNavigator(
         Chat: {
             screen: Chat
         }
+    },{
+        navigationOptions: {
+            header: null
+        },
+        
     }
 )

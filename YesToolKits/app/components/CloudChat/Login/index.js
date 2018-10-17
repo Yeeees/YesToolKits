@@ -3,17 +3,21 @@ import { View,Text,TouchableOpacity,TextInput, } from 'react-native'
 import styles from './styles'
 import {Header,Left,Icon,Container,Content,Body,Right} from 'native-base'
 import { Actions } from 'react-native-router-flux';
-import {navigate} from 'react-navigation'
+import {navigate,navigation} from 'react-navigation'
 class Login extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: "",
-        }
-    } 
+    // constructor(props) {
+    //     super(props)
+    //     this.state = {
+    //         name: "",
+    //     }
+    // } 
+    state = {
+        name: ""
+    }
     render() {
         
             const {text1,view1,textInput,container,label} = styles
+            //const { navigation } = this.props;
 
             return (
                 
@@ -46,7 +50,7 @@ class Login extends Component {
                     
                     <TouchableOpacity
                         onPress={() => {
-                            navigate('Profile', { name: 'Jane' })
+                            this.props.navigation.navigate('Chat', { name: this.state.name })
                         }}
                     >
                         <Text style={styles.label}>
