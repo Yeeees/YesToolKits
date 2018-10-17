@@ -1,32 +1,37 @@
 import React, { Component } from 'react'
-import { View,Text,TextInput } from 'react-native'
-import styles from './styles'
-import {Header,Left,Icon,Container,Content, Body, Right} from 'native-base'
+import Chat from './Chat';
+import Login from './Login';
+import {
+    Platform,
+  } from 'react-native';
+import { Router, Scene } from 'react-native-router-flux';
+import {createStackNavigator} from 'react-navigation'
 
-class CloudChat extends Component {
-    render() {
-        const {text1,view1} = styles
-        return (
-            <Container>
-            <Header transparent>
-                <Left>
-                    <Icon name="menu" onPress={()=>this.props.navigation.openDrawer()} />
-                </Left>
-                <Body>
-                    <Text>Cloud Chat</Text>
-                </Body>
-                <Right transparent>
 
-                </Right>
-                
-            </Header>
-            <Content contentContainerStyle={view1}>
-                <TextInput placeholder={'Email Address'}> </TextInput>
-                <TextInput placeholder={'Password'}></TextInput>
-            </Content>
-        </Container>
-        )
+// class CloudChat extends Component {
+//     render() {
+//         return (
+//             <Router>
+//               <Scene key='root' style={{paddingTop: Platform.OS === 'ios' ? 64 : 54}}  hideNavBar={true} >
+//                 <Scene key='login' title='Login' component={Login}/>
+//                 <Scene key='chat' title='Chat' component={Chat}/>
+//               </Scene>
+//             </Router>
+//           );
+//     }
+
+// }
+
+//export default CloudChat 
+
+export default createStackNavigator(
+    {
+        Login: {
+            screen: Login,
+
+        },
+        Chat: {
+            screen: Chat
+        }
     }
-}
-
-export default CloudChat
+)
