@@ -30,11 +30,12 @@ export default createStackNavigator(
 
         },
         Chat: {
-            screen: Chat
+            screen: Chat,
         }
     },{
         navigationOptions: {
-            header: null
+            //header: null
+            
         },
         
     }

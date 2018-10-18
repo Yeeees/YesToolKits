@@ -11,6 +11,9 @@ class Login extends Component {
     //         name: "",
     //     }
     // } 
+    static navigationOptions = {
+        header: null
+      };
     state = {
         name: ""
     }

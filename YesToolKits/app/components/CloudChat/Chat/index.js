@@ -9,6 +9,16 @@ export default class Chat extends React.Component {
 //     super(props)
     
 //   }
+static navigationOptions = {
+    title: 'Chat Room',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
   state = {
     messages: [],
     //name: this.props.name
@@ -17,7 +27,6 @@ export default class Chat extends React.Component {
   componentWillMount() {
     this.setState({name: this.props.navigation.getParam('name')})
     this.props.name = this.state.name
-
   }
   render() {
     return (
