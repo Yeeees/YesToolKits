@@ -28,7 +28,8 @@ export default class Chat extends React.Component {
           Backend.sendMessage(message);
         }}
         user={{
-          _id: Backend.getUid(),
+          //_id: Backend.getUid(),
+          _id: this.state.name,
           name: this.state.name,
         }}
       />
@@ -44,9 +45,9 @@ export default class Chat extends React.Component {
       });
     });
     Alert.alert(this.props.navigation.getParam('name')+" "+this.state.name+" "+this.props.name)
-    this.props.name = this.state.name
-    console.log("state " + this.state.name)
-        console.log("props " + this.props.name)
+    // this.props.name = this.state.name
+    // console.log("state " + this.state.name)
+    // console.log("props " + this.props.name)
   }
   componentWillUnmount() {
     Backend.closeChat();
