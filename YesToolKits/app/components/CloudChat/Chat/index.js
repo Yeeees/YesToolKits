@@ -53,7 +53,7 @@ static navigationOptions = {
         };
       });
     });
-    Alert.alert(this.props.navigation.getParam('name')+" "+this.state.name+" "+this.props.name)
+    Alert.alert("Sign in as " + this.state.name)
     // this.props.name = this.state.name
     // console.log("state " + this.state.name)
     // console.log("props " + this.props.name)
