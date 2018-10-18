@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Text,TouchableOpacity,TextInput, } from 'react-native'
+import { View,Text,TouchableOpacity,TextInput,Alert } from 'react-native'
 import styles from './styles'
 import {Header,Left,Icon,Container,Content,Body,Right} from 'native-base'
 import { Actions } from 'react-native-router-flux';
@@ -17,7 +17,7 @@ class Login extends Component {
     render() {
         
             const {text1,view1,textInput,container,label} = styles
-            //const { navigation } = this.props;
+            
 
             return (
                 
@@ -50,6 +50,7 @@ class Login extends Component {
                     
                     <TouchableOpacity
                         onPress={() => {
+                            //Alert.alert(this.state.name)
                             this.props.navigation.navigate('Chat', { name: this.state.name })
                         }}
                     >
