@@ -5,6 +5,16 @@
  * @format
  * @flow
  */
+//import 'core-js/es6/symbol'; import 'core-js/fn/symbol/iterator';
+
+// symbol polyfills
+global.Symbol = require('core-js/es6/symbol');
+require('core-js/fn/symbol/iterator');
+
+// collection fn polyfills
+require('core-js/fn/map');
+require('core-js/fn/set');
+require('core-js/fn/array/find');
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
@@ -33,7 +43,7 @@ const AppStack = DrawerNavigator({
   cloudchat: {screen: CloudChat},
 
 },{
-  initialRouteName: 'cloudchat',
+  initialRouteName: 'home',
   drawerOpenRoute: 'DrawerOpen',
   drawerCloseRoute: 'DrawerClose',
   drawerToggleRoute: 'DrawerToggle',

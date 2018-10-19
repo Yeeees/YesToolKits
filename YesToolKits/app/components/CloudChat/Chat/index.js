@@ -3,6 +3,7 @@ import {Alert} from 'react-native';
 import {navigation} from 'react-navigation'
 import { GiftedChat } from 'react-native-gifted-chat';
 import Backend from '../../../Backend';
+import { View,Platform } from 'native-base';
 
 export default class Chat extends React.Component {
 //   constructor(prpos) {
@@ -13,6 +14,7 @@ static navigationOptions = {
     title: 'Chat Room',
     headerStyle: {
       backgroundColor: '#f4511e',
+      paddingtop: 54
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
@@ -30,8 +32,7 @@ static navigationOptions = {
   }
   render() {
     return (
-        
-      <GiftedChat
+          <GiftedChat
         messages={this.state.messages}
         onSend={(message) => {
           Backend.sendMessage(message);
@@ -42,6 +43,7 @@ static navigationOptions = {
           name: this.state.name,
         }}
       />
+      
     );
     
   }
