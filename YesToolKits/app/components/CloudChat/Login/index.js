@@ -5,12 +5,7 @@ import {Header,Left,Icon,Container,Content,Body,Right,Button,Item, Input} from '
 import { Actions } from 'react-native-router-flux';
 import {navigate,navigation} from 'react-navigation'
 class Login extends Component {
-    // constructor(props) {
-    //     super(props)
-    //     this.state = {
-    //         name: "",
-    //     }
-    // } 
+
     static navigationOptions = {
         header: null
       };
@@ -51,16 +46,7 @@ class Login extends Component {
                                 value = {this.state.name}
                             />
                         </Item>
-                        {/* <TextInput 
-                            style = {textInput}
-                            placeholder={'Username'} 
-                            onChangeText={(text) => {
-                                this.setState({
-                                  name: text,
-                                });
-                              }}
-                            value = {this.state.name}
-                        /> */}
+                        
                     </View>
                     
                     <View style = {container} >
